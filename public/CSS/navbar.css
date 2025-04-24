@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: #1E1F1F;
+    display: flex;
+}
+
+.menu{
+    background-color: #282A2A;
+    width: 60px;
+    height: 100vh;
+    padding: 20px;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.menu:hover{
+    width: 260px;
+}
+
+ul{
+    list-style: none;
+    position: relative;
+    height: 95%;
+}
+
+ul li a {
+    display: block;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    gap: 45px;
+    transition: .5s;
+}
+
+ul li a:hover {
+    background-color: #6E7272;
+}
+
+.log-out{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.log-out a{
+    background-color: red;
+}
+
+ul li a i {
+    font-size: 30px;
+    color: #F1EDE4;
+}
+
+.img-box{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #F1EDE4;
+    flex-shrink: 0;
+}
+
+.img-box img{
+    width: 100%;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.profile h2{
+    text-transform: capitalize;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+}
+
+ul li a p{
+    font-size: 19px;
+    text-transform: capitalize;
+    letter-spacing: 1.5px;
+}
+
+.active{
+    margin-top: 30px;
+    background-color: #6E7272;
+}
+
+.content{
+    width: 100%;
+    margin: 5px;
+}
+
+.title{
+    background-color:#525252;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px 0;
+}

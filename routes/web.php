@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 //Souhail est ajouté cette partie🐱‍👤
 Route::middleware(['auth','admin'])->group(function (){
 
-    Route::get('admin/dashboard',[HomeController::class, 'index']);
+    Route::get('admin/dashboard',[HomeController::class, 'index'])->name('dashboard');
     Route::get('admin/products',[ProductController::class, 'index'])->name('admin/products');
 
 });
