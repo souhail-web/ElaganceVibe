@@ -33,29 +33,15 @@
 
             <li>
             <a class="{{ Request::is('admin/products*') ? 'active' : '' }}" href="{{ route('admin/products') }}">
-                    <i class="fas fa-table"></i>
+            <i class="fa-solid fa-box-open"></i>
                     <p>products</p>
                 </a>
             </li>
 
             <li>
                 <a href="#">
-                    <i class="fas fa-chart-pie"></i>
-                    <p>charts</p>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fas fa-pen"></i>
-                    <p>posts</p>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="fas fa-star"></i>
-                    <p>favorite</p>
+                <i class="fa-solid fa-money-check-dollar"></i>
+                    <p>income</p>
                 </a>
             </li>
 
