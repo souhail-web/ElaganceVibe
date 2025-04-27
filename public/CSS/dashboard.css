@@ -1,0 +1,106 @@
+body {
+    overflow-x: hidden;
+}
+
+
+.main-content{
+    width: 100%;
+}
+
+.content{
+    margin: 10px;
+    width: 99%;
+}
+
+.title-info{
+    
+    background-color: rgb(47, 47, 231);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.data-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.data-info .box{
+    background-color: #123;
+    height: 150px;
+    letter-spacing: 1px;
+    flex-basis:150px;
+    flex-grow: 1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.data-info .box:hover{
+    background-color:#ffffff55 ;
+    letter-spacing: 2px;
+    transition: 0.5s;
+    
+}
+
+.data-info .box i{
+    font-size: 60px;
+}
+
+
+.data-info .box .data{
+    text-align: center;
+}
+
+.data-info .data span{
+    font-size: 30px;
+}
+
+.data p{
+    font-size: 28px;
+}
+
+
+table{
+    width: 100%;
+    text-align: center;
+    border-spacing: 8px;
+}
+
+td,th{
+    background-color: rgb(20, 42, 64);
+    height: 40px;
+    border-radius: 8px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+th{
+    background-color: rgb(47, 47, 231);
+}
+
+td:hover{
+    background-color: #ffffff55;
+}
+
+.price, .count{
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.price{
+    background-color: green;
+}
+
+.count{
+    background-color: gold;
+    color: black;
+}

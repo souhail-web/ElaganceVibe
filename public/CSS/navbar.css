@@ -20,7 +20,7 @@ body{
 }
 
 .menu:hover{
-    width: 260px;
+    width: 320px;
 }
 
 ul{
@@ -51,8 +51,29 @@ ul li a:hover {
     width: 100%;
 }
 
-.log-out a{
+.log-out form button{
     background-color: red;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 16px;
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.log-out form button p {
+    font-size: 20px;
+    margin-right: 30px;
+}
+.log-out form button i{
+    margin-right: 20px;
+    font-size: 24px;
+}
+
+.log-out form button:hover{
+    background-color: #807f7d;
 }
 
 ul li a i {
@@ -77,6 +98,16 @@ ul li a i {
     display: flex;
     align-items: center;
     gap: 35px;
+    padding: 3px;
+}
+
+.profile:hover{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    background-color: #aba08c;
+    border-radius: 10px;
+    
 }
 
 .profile h2{
@@ -84,6 +115,7 @@ ul li a i {
     font-size: 22px;
     letter-spacing: 1.5px;
 }
+
 
 ul li a p{
     font-size: 19px;
