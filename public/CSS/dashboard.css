@@ -91,6 +91,11 @@ td:hover{
     background-color: #ffffff55;
 }
 
+.title-product{
+    text-transform: capitalize;
+    letter-spacing: 2px;
+}
+
 .price, .count{
     padding: 6px;
     border-radius: 6px;

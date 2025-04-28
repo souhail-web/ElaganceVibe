@@ -20,7 +20,7 @@
                 <i class="fas fa-user"></i>
                 <div class="data">
                     <p>Utilisateurs</p>
-                    <span>100</span>
+                    <span>{{$userCount}}</span>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
             <i class="fa-solid fa-bottle-droplet"></i>
                 <div class="data">
                     <p>Produit</p>
-                    <span>1000</span>
+                    <span>{{$productCount}}</span>
                 </div>
             </div>
 
@@ -55,65 +55,17 @@
                     <th>Quantité</th>
                 </tr>
             </thead>
-
+        @if(count($products)>0)
             <tbody>
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-
-                <tr>
-                    <td>xxxx</td>
-                    <td><span class="price">$142</span></td>
-                    <td><span class="count">999</span></td>
-                </tr>
-                
-
-                
+                @foreach($products as $product)
+                    <tr>
+                        <td><span class="title-product">{{$product['title']}}</span></td>
+                        <td><span class="price">${{$product['price']}}</span></td>
+                        <td><span class="count">{{$product['quantity']}}</span></td> 
+                    </tr>
+                @endforeach
             </tbody>
+        @endif
         </table>
     </div>  
 @endsection

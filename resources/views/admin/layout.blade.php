@@ -21,8 +21,6 @@
                 <h2>{{ Auth::user()->name }}</h2>
             </li>
 
-
-
             <li>
                 <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
                     <i class="fas fa-home"></i>
