@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+
     <title>@yield("title")</title>
     @stack('styles')
 
@@ -16,7 +18,7 @@
                 <div class="img-box">
                     <img src="{{ asset('assets/profile.webp') }}" alt="Logo">
                 </div>
-                <h2>souhail</h2>
+                <h2>{{ Auth::user()->name }}</h2>
             </li>
 
 
