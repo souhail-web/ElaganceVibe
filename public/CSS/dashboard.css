@@ -42,6 +42,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 5px;
 }
 
 .data-info .box:hover{
@@ -109,3 +110,6 @@ td:hover{
     background-color: gold;
     color: black;
 }
+
+
+

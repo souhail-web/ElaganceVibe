@@ -49,6 +49,7 @@ ul li a:hover {
     position: absolute;
     bottom: 0;
     width: 100%;
+    
 }
 
 .log-out form button{
@@ -61,6 +62,7 @@ ul li a:hover {
     border-radius: 18px;
     overflow: hidden;
     cursor: pointer;
+    border: none;
 }
 
 .log-out form button p {
@@ -74,6 +76,7 @@ ul li a:hover {
 
 .log-out form button:hover{
     background-color: #807f7d;
+    transition: 1s;
 }
 
 ul li a i {

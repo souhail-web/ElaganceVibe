@@ -16,41 +16,41 @@
         <ul>
             <li class="profile" onclick="window.location='{{ route('profile.edit') }}'" style="cursor:pointer;">
                 <div class="img-box">
-                    <img src="{{ asset('assets/profile.webp') }}" alt="Logo">
+                    <img src="{{ asset('assets/profile.webp') }}" alt="profile">
                 </div>
-                <h2>{{ Auth::user()->name }}</h2>
+                <h2>{{ Auth::user()->first_name }}</h2>
             </li>
 
             <li>
-                <a class="{{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
-                    <p>Tableau de bord</p>
+                    <p>Dashboard</p>
                 </a>
             </li>
 
             <li>
-            <a class="{{ request()->routeIs('admin/users') ? 'active' : '' }}" href="{{ route('admin/users') }}">
+            <a class="{{ request()->routeIs('admin.users') ? 'active' : '' }}" href="{{ route('admin.users') }}">
                     <i class="fas fa-user-group"></i>
                     <p>Clients</p>
                 </a>
             </li>
 
             <li>
-                <a class="{{ Request::is('admin/products*') ? 'active' : '' }}" href="{{ route('admin/products') }}">
+                <a class="{{ Request::is('admin.products*') ? 'active' : '' }}" href="{{ route('admin.products') }}">
                     <i class="fa-solid fa-box-open"></i>
                     <p>Produits</p>
                 </a>
             </li>
 
             <li>
-            <a class="{{ Request::is('admin/income*') ? 'active' : '' }}" href="{{ route('admin/income') }}">
+            <a class="{{ Request::is('admin.income*') ? 'active' : '' }}" href="{{ route('admin.income') }}">
             <i class="fa-solid fa-money-check-dollar"></i>
                     <p>Revenus</p>
                 </a>
             </li>
 
             <li>
-            <a class="{{ Request::is('admin/settings*') ? 'active' : '' }}" href="{{ route('admin/settings') }}">
+            <a class="{{ Request::is('admin.settings*') ? 'active' : '' }}" href="{{ route('admin.settings') }}">
                     <i class="fas fa-cog"></i>
                     <p>Paramètres</p>
                 </a>

@@ -1,8 +1,118 @@
 @extends('admin.layout')
 
-@section('title', 'Users')
+@section('title', 'Utilisateurs')
+
+@push('styles')
+    
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endpush
 
 @section('content')
-    <h1>Page Users</h1>
-    <!-- Contenu spécifique à la page Settings -->
+    <div class="content">
+    @if (session('success'))
+        <div id="success-message" style="background-color: #2ecc71; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 15px; font-size:20px">
+            {!! session('success') !!}
+        </div>
+    @endif
+
+
+        <div class="title-info">
+            <p>Utilisateurs</p>
+            <i class="fa-solid fa-users" style="font-size:20px"></i>
+        </div>
+
+        <div class="data-info"> 
+
+            <div class="box">
+                <i class="fas fa-user"></i>
+                <div class="data">
+                    <p>Clients</p>
+                    <span>{{$clientCount}}</span>
+                </div>
+            </div>
+
+            <div class="box">
+            <i class="fa-solid fa-bottle-droplet"></i>
+                <div class="data">
+                    <p>Employés</p>
+                    <span>{{$employeCount}}</span>
+                </div>
+            </div>
+
+            <div class="box">
+            <i class="fa-solid fa-dollar-sign"></i>
+                <div class="data">
+                    <p>Actif maintenant</p>
+                    <span>10000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="title-info">
+            <p> Clients</p>
+            <i class="fa-solid fa-handshake" style="font-size:20px"></i>
+        </div>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+        @if(count($clients)>0)
+            <tbody>
+                @foreach($clients as $client)
+                    <tr>
+                        <td>{{$client['id']}}</td>
+                        <td><span>{{$client['first_name']}}</span></td>
+                        <td><span>{{$client['last_name']}}</span></td>
+                        <td><span>{{$client['email']}}</span></td> 
+                        <td>{{$client['phone']}}</td>
+                        
+                        <!-- Colonne Modifier -->
+                        <td title="Modifier">
+                            <a href="{{ route('admin.users.edit', $client->id) }}"  style="color:#ffc107;">
+                                <i class="fas fa-edit fa-lg" style="color:#55DD5E"></i>
+                            </a>
+                        </td>
+
+                        <!-- Colonne Supprimer -->
+                        <td title="Supprimer">
+                            <form action="{{ route('admin.users.destroy', $client->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" onclick="return confirm('Supprimer cet utilisateur ?')" style="background:none; border:none; color:#dc3545; cursor:pointer" >
+                                    <i class="fas fa-trash-alt fa-lg" style="color:red;font-size:22px"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+        @else
+                <tr>
+                    <td colspan="7" class="text-center">Aucun utilisateur trouvé.</td>
+                </tr>
+            </tbody>
+        @endif
+        </table>
+
+    </div>  
 @endsection
+
+<script>
+    setTimeout(function () {
+        const msg = document.getElementById('success-message');
+        if (msg) {
+            msg.style.transition = "opacity 0.5s ease";
+            msg.style.opacity = 0;
+            setTimeout(() => msg.remove(), 500); // retire complètement l'élément après fondu
+        }
+    }, 5000); // 5000 ms = 5 secondes
+</script>

@@ -27,15 +27,17 @@ Route::middleware('auth')->group(function () {
 //Souhail est ajouté cette partie🐱‍👤
 Route::middleware(['auth','admin'])->group(function (){
 
-    Route::get('admin/dashboard',[HomeController::class, 'index'])->name('dashboard');
+    Route::get('admin/dashboard',[HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('admin/products',[ProductController::class, 'index'])->name('admin.products');
+    Route::get('admin/users',[UsersController::class, 'index'])->name('admin.users');
+    Route::get('admin/income',[IncomeController::class, 'index'])->name('admin.income');
+    Route::get('admin/settings',[SettingsController::class, 'index'])->name('admin.settings');
 
-    Route::get('admin/products',[ProductController::class, 'index'])->name('admin/products');
+    // 🛠 Routes pour modifier et supprimer un utilisateur
 
-    Route::get('admin/users',[UsersController::class, 'index'])->name('admin/users');
-
-    Route::get('admin/income',[IncomeController::class, 'index'])->name('admin/income');
-
-    Route::get('admin/settings',[SettingsController::class, 'index'])->name('admin/settings');
+    Route::get('admin/users/{id}/edit', [UsersController::class, 'edit'])->name('admin.users.edit');
+    Route::put('admin/users/{id}', [UsersController::class, 'update'])->name('admin.users.update');
+    Route::delete('admin/users/{id}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 require __DIR__.'/auth.php';
