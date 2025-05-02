@@ -53,6 +53,22 @@
             <i class="fa-solid fa-handshake" style="font-size:20px"></i>
         </div>
 
+        <form method="GET" action="{{ route('admin.users') }}" style="margin-bottom: 5px; display: flex; gap: 10px; align-items: center;">
+            <input type="text" name="search" placeholder="🔍 Rechercher par email, nom ..." value="{{ request('search') }}"
+                style="padding: 10px 15px; width: 300px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; color:black; outline: none;   ">
+            
+            <button type="submit" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+                Rechercher
+            </button>
+
+            @if(request('search'))
+                <a href="{{ route('admin.users') }}" style="padding: 10px 20px; background-color: #e74c3c; color: white; border-radius: 8px; font-size: 16px; text-decoration: none;">
+                    Réinitialiser
+                </a>
+            @endif
+        </form>
+
+
         <table>
 
             <thead>
