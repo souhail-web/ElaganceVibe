@@ -15,7 +15,11 @@ class HomeController extends Controller
         $serviceCount=service::count();
         $products = product::all(); // Récupérer tous les produits
         $productCount = Product::count(); // compter tous les produits
-        $userCount = User::count(); // compter tous les utilisateurs
+        
+        // Compter clients et employés
+        $clientCount = User::where('usertype', 'client')->count();
+        $employeeCount = User::where('usertype', 'employee')->count();
+        $userCount = $clientCount + $employeeCount;
 
 
         return view('admin.dashboard',compact('products','productCount','userCount','serviceCount'));

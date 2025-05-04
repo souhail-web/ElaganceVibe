@@ -31,7 +31,7 @@
             <li>
             <a class="{{ request()->routeIs('admin.users') ? 'active' : '' }}" href="{{ route('admin.users') }}">
                     <i class="fas fa-user-group"></i>
-                    <p>Clients</p>
+                    <p>Utilisateurs</p>
                 </a>
             </li>
 
