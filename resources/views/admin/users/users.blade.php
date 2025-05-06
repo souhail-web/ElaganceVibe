@@ -2,19 +2,20 @@
 
 @section('title', 'Utilisateurs')
 
+
+
 @push('styles')
-    
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endpush
 
 @section('content')
     <div class="content">
         
-    @if (session('success'))
-        <div id="success-message" style="background-color: #2ecc71; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 15px; font-size:20px">
-            {!! session('success') !!}
-        </div>
-    @endif
+        @if (session('success'))
+            <div id="success-message" style="background-color: #2ecc71; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 15px; font-size:20px">
+                {!! session('success') !!}
+            </div>
+        @endif
 
 
         <div class="title-info">
@@ -130,6 +131,14 @@
             <i class="fa-solid fa-user-tie" style="font-size:20px"></i>
         </div>
 
+        <!-- Bouton Ajouter un employé -->
+        <div style="margin: 20px 0;">
+            <a href="{{ route('admin.users.create_employee') }}"
+            style="padding: 10px 20px; background-color: #27ae60; color: white; border-radius: 8px; text-decoration: none; font-size: 16px;">
+                <i class="fa-solid fa-plus"></i> Ajouter un employé
+            </a>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -138,6 +147,8 @@
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Telephone</th>
+                    <th>Spécialité</th>
+                    <th>Disponibilité</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
                 </tr>
@@ -151,6 +162,8 @@
                         <td><span>{{$employee['last_name']}}</span></td>
                         <td><span>{{$employee['email']}}</span></td> 
                         <td>{{$employee['phone']}}</td>
+                        <td>{{$employee['specialty']}}</td>
+                        <td>{{$employee['availability']}}</td>
                         
                         <!-- Colonne Modifier -->
                         <td title="Modifier">
@@ -184,6 +197,8 @@
             {{ $employees->links('vendor.pagination.custom') }}
         @endif
 
+        
+        
 
         
     </div>  

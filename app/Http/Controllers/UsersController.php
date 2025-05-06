@@ -74,6 +74,8 @@ class UsersController extends Controller
             'phone' => 'required|string|max:15',
             'gender' => 'required|in:female,male',
             'usertype' => 'required|in:client,employee',
+            'specialty' => 'nullable|string|max:255',
+            'availability' => 'nullable|string|max:255',
         ]);
 
         $user->update($validatedData);
@@ -88,4 +90,31 @@ class UsersController extends Controller
 
         return redirect()->route('admin.users')->with('success', 'Utilisateur supprimé avec succès. <i class="fa-solid fa-user-large-slash"></i>');
     }
+
+    // Pour ajouter employee 🎎
+    public function create()
+{
+    return view('admin.users.create_employee'); 
+}
+
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users',
+        'phone' => 'required|string|max:15',
+        'gender' => 'required|in:female,male',
+        'usertype' => 'required|in:employee', // Limité aux employés ici
+        'specialty' => 'nullable|string|max:255',
+        'availability' => 'nullable|string|max:255',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+
+        User::create($validated);
+
+
+    return redirect()->route('admin.users')->with('success', 'Employé ajouté avec succès ! <i class="fa-solid fa-user-plus"></i>');
+}
+
 }

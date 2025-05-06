@@ -34,10 +34,13 @@ Route::middleware(['auth','admin'])->group(function (){
     Route::get('admin/settings',[SettingsController::class, 'index'])->name('admin.settings');
 
     // 🛠 Routes pour modifier et supprimer un utilisateur
-
     Route::get('admin/users/{id}/edit', [UsersController::class, 'edit'])->name('admin.users.edit');
     Route::put('admin/users/{id}', [UsersController::class, 'update'])->name('admin.users.update');
     Route::delete('admin/users/{id}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
+
+    Route::get('/admin/users/create', [UsersController::class, 'create'])->name('admin.users.create_employee');
+    Route::post('/admin/users', [UsersController::class, 'store'])->name('admin.users.store');
+
 });
 
 require __DIR__.'/auth.php';

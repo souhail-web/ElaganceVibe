@@ -51,8 +51,6 @@
             </select>
         </div>
 
-
-
         <div>
             <label for="usertype">Type d'utilisateur</label>
             <select name="usertype" required>
@@ -60,6 +58,20 @@
                 <option value="employee" {{ old('usertype', $user->usertype) == 'employee' ? 'selected' : '' }}>Employé</option>
             </select>
         </div>
+
+        <!-- Spécialité et Disponibilité si employé -->
+        @if($user->usertype === 'employee')
+            <div>
+                <label for="specialty">Spécialité</label>
+                <input type="text" name="specialty" value="{{ old('specialty', $user->specialty) }}">
+            </div>
+
+            <div>
+                <label for="availability">Disponibilité</label>
+                <input type="text" name="availability" value="{{ old('availability', $user->availability) }}">
+            </div>
+        @endif
+
 
         <div>
             <a href="{{ route('admin.users') }}">Annuler</a>
