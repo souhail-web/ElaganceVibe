@@ -3,7 +3,7 @@
 @section('title', 'Créer un employé')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/create_employee.css') }}">
 @endpush
 
 @section('content')
@@ -28,27 +28,27 @@
         <form action="{{ route('admin.users.store') }}" method="POST">
             @csrf
 
-            <div>
+            <div class="form-group">
                 <label for="first_name">Prénom</label>
                 <input type="text" name="first_name" id="first_name" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="last_name">Nom</label>
                 <input type="text" name="last_name" id="last_name" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="phone">Téléphone</label>
                 <input type="text" name="phone" id="phone" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="gender">Sexe</label>
                 <select name="gender" id="gender" required>
                     <option value="male">Homme</option>
@@ -58,27 +58,27 @@
 
             <input type="hidden" name="usertype" value="employee">
 
-            <div>
+            <div class="form-group">
                 <label for="specialty">Spécialité</label>
-                <input type="text" name="specialty" id="specialty" placeholder="Coiffure, Massage, etc.">
+                <input type="text" name="specialty" id="specialty" placeholder="Coiffure, Massage, etc." required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="availability">Disponibilité</label>
-                <input type="text" name="availability" id="availability" placeholder="Ex : Lun-Ven 9h-17h">
+                <input type="text" name="availability" id="availability" placeholder="Ex : Lun-Ven 9h-17h" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="password">Mot de passe</label>
                 <input type="password" name="password" id="password" required>
             </div>
 
-            <div>
+            <div class="form-group">
                 <label for="password_confirmation">Confirmer le mot de passe</label>
                 <input type="password" name="password_confirmation" id="password_confirmation" required>
             </div>
 
-            <div>
+            <div class="form-actions">
                 <a href="{{ route('admin.users') }}">Annuler</a>
                 <button type="submit">Créer</button>
             </div>

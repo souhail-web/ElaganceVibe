@@ -1,0 +1,120 @@
+@extends('admin.layout')
+
+@section('title', 'Produits')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/products/products.css') }}">
+@endpush
+
+@section('content')
+<div class="content">
+
+    @if (session('success'))
+        <div id="success-message" style="background-color: #2ecc71; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 15px; font-size:20px">
+            {!! session('success') !!}
+        </div>
+    @endif
+
+    <!-- Titre -->
+    <div class="title-info">
+        <p>Produits</p>
+        <i class="fa-solid fa-box" style="font-size:20px"></i>
+    </div>
+
+    <!-- Statistiques des produits -->
+<div class="data-info">
+
+    <div class="box">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <div class="data">
+            <p>Total Produits</p>
+            <span>{{ $totalProducts }}</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <i class="fa-solid fa-check-circle"></i>
+        <div class="data">
+            <p>Produits Disponibles</p>
+            <span>{{ $totalAvailable }}</span>
+        </div>
+    </div>
+
+    <div class="box">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div class="data">
+            <p>Stock Faible</p>
+            <span>{{ $lowStock }}</span>
+        </div>
+    </div>
+
+</div>
+
+    <!-- Tableau des produits -->
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Statut</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($products as $product)
+                <tr>
+                    <td>{{ $product->id }}</td>
+                    <td><span>{{ $product->name }}</span></td>
+                    <td>{{ $product->category === 'male' ? 'Homme' : 'Femme' }}</td>
+                    <td>{{ $product->price }} €</td>
+                    <td>{{ $product->quantity }}</td>
+                    <td>
+                        @if ($product->status === 'available')
+                            <span style="color: #20E938;">Disponible</span>
+                        @else
+                            <span style="color: red;">Indisponible</span>
+                        @endif
+                    </td>
+                    <td class="actions">
+                        <a href="{{ route('admin.products.edit', $product->id) }}" title="Modifier" >
+                        <i class="fas fa-edit fa-lg" style="color:#55DD5E;"></i>
+                        </a>
+                        <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('Supprimer ce produit ?')" style="background:none; border:none;" title="supprimer">
+                            <i class="fas fa-trash-alt fa-lg" style="color:red;"></i>
+                            </button>
+                        </form>
+                    </td>
+
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" class="text-center">Aucun produit trouvé.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    @if ($products->hasPages())
+        {{ $products->links('vendor.pagination.custom') }}
+    @endif
+
+</div>
+@endsection
+
+<script>
+    setTimeout(function () {
+        const msg = document.getElementById('success-message');
+        if (msg) {
+            msg.style.transition = "opacity 0.5s ease";
+            msg.style.opacity = 0;
+            setTimeout(() => msg.remove(), 500);
+        }
+    }, 5000);
+</script>

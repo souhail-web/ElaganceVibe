@@ -18,6 +18,7 @@ return new class extends Migration
             $table->float('price');
             $table->integer('quantity');
             $table->enum('category', ['male', 'female']);
+            $table->enum('status', ['available', 'unavailable'])->default('available');
             $table->timestamps();
         });
     }

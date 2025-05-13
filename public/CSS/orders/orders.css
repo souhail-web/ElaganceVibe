@@ -2,18 +2,16 @@ body {
     overflow-x: hidden;
 }
 
-
-.main-content{
+.main-content {
     width: 100%;
 }
 
-.content{
+.content {
     margin: 10px;
     width: 99%;
 }
 
-.title-info{
-    
+.title-info {
     background-color: rgb(47, 47, 231);
     padding: 10px;
     display: flex;
@@ -24,7 +22,7 @@ body {
     font-weight: 700;
 }
 
-.data-info{
+.data-info {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,11 +30,11 @@ body {
     gap: 10px;
 }
 
-.data-info .box{
+.data-info .box {
     background-color: #123;
     height: 150px;
     letter-spacing: 1px;
-    flex-basis:150px;
+    flex-basis: 150px;
     flex-grow: 1;
     border-radius: 8px;
     display: flex;
@@ -45,38 +43,36 @@ body {
     margin-bottom: 5px;
 }
 
-.data-info .box:hover{
-    background-color:#ffffff55 ;
+.data-info .box:hover {
+    background-color: #ffffff55;
     letter-spacing: 2px;
     transition: 0.5s;
-    
 }
 
-.data-info .box i{
+.data-info .box i {
     font-size: 60px;
 }
 
-
-.data-info .box .data{
+.data-info .box .data {
     text-align: center;
 }
 
-.data-info .data span{
+.data-info .data span {
     font-size: 30px;
 }
 
-.data p{
+.data p {
     font-size: 28px;
 }
 
-
-table{
+table {
     width: 100%;
     text-align: center;
     border-spacing: 8px;
 }
 
-td,th{
+td,
+th {
     background-color: rgb(20, 42, 64);
     height: 40px;
     border-radius: 8px;
@@ -84,33 +80,82 @@ td,th{
     letter-spacing: 1px;
 }
 
-th{
+th {
     background-color: rgb(47, 47, 231);
 }
 
-td:hover{
+td:hover {
     background-color: #ffffff55;
 }
 
-.title-product{
+.title-product {
     text-transform: capitalize;
     letter-spacing: 2px;
 }
 
-.price, .count{
+.price,
+.count {
     padding: 6px;
     border-radius: 6px;
 }
 
-.price{
+.price {
     background-color: green;
 }
 
-.count{
+.count {
     background-color: gold;
     color: black;
 }
 
+/* Style pour les icônes d'action Modifier et Supprimer */
+td i.fa-edit,
+td i.fa-trash-alt {
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
 
+/* Effet au survol */
+td i.fa-edit:hover {
+    color: #55DD5E;
+    transform: scale(1.2);
+}
 
+td i.fa-trash-alt:hover {
+    color: #d14444;
+    transform: scale(1.2);
+}
 
+td i.fa-trash-alt {
+    font-size: 20px;
+}
+
+/* Nouvelle classe pour aligner les icônes d'action dans une seule colonne */
+td.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Spécifiques aux commandes */
+table {
+    margin-top: 20px;
+}
+
+td span {
+    font-weight: bold;
+}
+
+/* Mise en forme des statuts de commande */
+td span[style*="color: #20E938"] {
+    color: #20E938; /* Payée */
+}
+
+td span[style*="color: orange"] {
+    color: orange; /* En attente */
+}
+
+td span[style*="color: red"] {
+    color: red; /* Annulée */
+}

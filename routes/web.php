@@ -6,7 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\IncomeController;
-use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ServicesController;
+
 
 
 
@@ -31,15 +33,28 @@ Route::middleware(['auth','admin'])->group(function (){
     Route::get('admin/products',[ProductController::class, 'index'])->name('admin.products');
     Route::get('admin/users',[UsersController::class, 'index'])->name('admin.users');
     Route::get('admin/income',[IncomeController::class, 'index'])->name('admin.income');
-    Route::get('admin/settings',[SettingsController::class, 'index'])->name('admin.settings');
+    Route::get('admin/orders',[OrdersController::class, 'index'])->name('admin.orders');
+    Route::get('admin/services',[ServicesController::class, 'index'])->name('admin.services');
+
+    // 🛠 Routes pour modifier et supprimer un commande
+    Route::delete('admin/orders/{order}', [OrdersController::class, 'destroy'])->name('admin.orders.destroy');
+    Route::get('admin/orders/{order}/edit', [OrdersController::class, 'edit'])->name('admin.orders.edit');
+    Route::put('/orders/{order}', [OrdersController::class, 'update'])->name('admin.orders.update');
+
 
     // 🛠 Routes pour modifier et supprimer un utilisateur
     Route::get('admin/users/{id}/edit', [UsersController::class, 'edit'])->name('admin.users.edit');
     Route::put('admin/users/{id}', [UsersController::class, 'update'])->name('admin.users.update');
     Route::delete('admin/users/{id}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
-
     Route::get('/admin/users/create', [UsersController::class, 'create'])->name('admin.users.create_employee');
     Route::post('/admin/users', [UsersController::class, 'store'])->name('admin.users.store');
+
+    // 🛠 Routes CRUD pour les produits
+    Route::get('admin/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('admin/products', [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('admin/products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('admin/products/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
 });
 

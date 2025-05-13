@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller
+class ServicesController extends Controller
 {
     public function index(){
-        return view('admin.settings.settings');
+        return view('admin.services.services');
     }
 }

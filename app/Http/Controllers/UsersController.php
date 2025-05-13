@@ -106,8 +106,8 @@ public function store(Request $request)
         'phone' => 'required|string|max:15',
         'gender' => 'required|in:female,male',
         'usertype' => 'required|in:employee', // Limité aux employés ici
-        'specialty' => 'nullable|string|max:255',
-        'availability' => 'nullable|string|max:255',
+        'specialty' => 'required|string|max:255',
+        'availability' => 'required|string|max:255',
         'password' => 'required|string|min:6|confirmed',
     ]);
 
