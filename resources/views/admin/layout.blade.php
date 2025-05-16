@@ -24,7 +24,7 @@
             <li>
                 <a class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-home"></i>
-                    <p>Dashboard</p>
+                    <p>Centre</p>
                 </a>
             </li>
 
@@ -47,6 +47,13 @@
                 <a class="{{ Request::routeIs('admin.orders*') ? 'active' : '' }}" href="{{ route('admin.orders') }}">
                     <i class="fa-solid fa-list-check"></i>
                     <p>Commandes</p>
+                </a>
+            </li>
+
+             <li>
+                <a class="{{ Request::routeIs('admin.appointment*') ? 'active' : '' }}" href="{{ route('admin.appointment') }}">
+                    <i class="fas fa-calendar-check"></i>
+                    <p>Réservations</p>
                 </a>
             </li>
 

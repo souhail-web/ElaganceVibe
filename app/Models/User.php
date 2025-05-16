@@ -51,4 +51,28 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the appointments where the user is a client
+     */
+    public function clientAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'client_id');
+    }
+
+    /**
+     * Get the appointments where the user is an employee
+     */
+    public function employeeAppointments()
+    {
+        return $this->hasMany(Appointment::class, 'employee_id');
+    }
+
+    /**
+     * Get the orders associated with the user
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

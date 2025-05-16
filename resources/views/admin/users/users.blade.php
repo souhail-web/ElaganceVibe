@@ -15,6 +15,12 @@
             </div>
         @endif
 
+        @if (session('error'))
+            <div id="error-message" style="background-color: #e74c3c; color: white; padding: 10px 20px; border-radius: 5px; margin-bottom: 15px; font-size:20px">
+                {!! session('error') !!}
+            </div>
+        @endif
+
         <div class="title-info">
             <p>Utilisateurs</p>
             <i class="fa-solid fa-users" style="font-size:20px"></i>
@@ -120,13 +126,7 @@
             <i class="fa-solid fa-user-tie" style="font-size:20px"></i>
         </div>
 
-        <!-- Bouton Ajouter un employé -->
-        <div style="margin: 20px 0;">
-            <a href="{{ route('admin.users.create_employee') }}"
-            style="padding: 10px 20px; background-color: #27ae60; color: white; border-radius: 8px; text-decoration: none; font-size: 16px;">
-                <i class="fa-solid fa-plus"></i> Ajouter un employé
-            </a>
-        </div>
+        
 
         <table>
             <thead>
@@ -175,21 +175,39 @@
                 </tr>
             @endif
         </table>
+        
+       <div style="display: flex; justify-content: space-between; align-items: center;">
+             <!-- Bouton Ajouter un employé -->
+            <div style="margin: 20px 0;">
+                <a href="{{ route('admin.users.create_employee') }}"
+                style="padding: 10px 20px; background-color: #27ae60; color: white; border-radius: 8px; text-decoration: none; font-size: 16px;">
+                    <i class="fa-solid fa-plus"></i> Ajouter un employé
+                </a>
+            </div>
 
-        @if ($employees->hasPages())
-            {{ $employees->links('vendor.pagination.custom') }}
-        @endif
+            @if ($employees->hasPages())
+                {{ $employees->links('vendor.pagination.custom') }}
+            @endif
 
+       </div>
     </div>  
 @endsection
 
 <script>
     setTimeout(function () {
-        const msg = document.getElementById('success-message');
-        if (msg) {
-            msg.style.transition = "opacity 0.5s ease";
-            msg.style.opacity = 0;
-            setTimeout(() => msg.remove(), 500);
+        const successMsg = document.getElementById('success-message');
+        const errorMsg = document.getElementById('error-message');
+        
+        if (successMsg) {
+            successMsg.style.transition = "opacity 0.5s ease";
+            successMsg.style.opacity = 0;
+            setTimeout(() => successMsg.remove(), 500);
         }
-    }, 5000);
+        
+        if (errorMsg) {
+            errorMsg.style.transition = "opacity 0.5s ease";
+            errorMsg.style.opacity = 0;
+            setTimeout(() => errorMsg.remove(), 500);
+        }
+    }, 10000);
 </script>

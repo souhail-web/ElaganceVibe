@@ -50,7 +50,7 @@
     <br>
         <!-- Formulaire de recherche -->
     <form method="GET" action="{{ route('admin.orders') }}" style="margin-bottom: 15px; display: flex; gap: 10px;">
-        <input type="text" name="search" placeholder="🔍 Rechercher par ID de commande ou nom, prénom, email ..."
+        <input type="text" name="search" placeholder="🔍Rechercher par ID; nom; prénom..."
                value="{{ request('search') }}"
                style="padding: 10px 15px; width: 300px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; color:black; outline: none;">
         <button type="submit" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">

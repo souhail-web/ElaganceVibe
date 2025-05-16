@@ -22,33 +22,50 @@
     </div>
 
     <!-- Statistiques des produits -->
-<div class="data-info">
+    <div class="data-info">
+        <div class="box">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <div class="data">
+                <p>Total Produits</p>
+                <span>{{ $totalProducts }}</span>
+            </div>
+        </div>
 
-    <div class="box">
-        <i class="fa-solid fa-boxes-stacked"></i>
-        <div class="data">
-            <p>Total Produits</p>
-            <span>{{ $totalProducts }}</span>
+        <div class="box">
+            <i class="fa-solid fa-check-circle"></i>
+            <div class="data">
+                <p>Produits Disponibles</p>
+                <span>{{ $totalAvailable }}</span>
+            </div>
+        </div>
+
+        <div class="box">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div class="data">
+                <p>Stock Faible</p>
+                <span>{{ $lowStock }}</span>
+            </div>
         </div>
     </div>
 
-    <div class="box">
-        <i class="fa-solid fa-check-circle"></i>
-        <div class="data">
-            <p>Produits Disponibles</p>
-            <span>{{ $totalAvailable }}</span>
-        </div>
-    </div>
+    <!-- Barre de recherche avec le style de users.blade.php -->
+    <form method="GET" action="{{ route('admin.products') }}" style="margin-bottom: 5px; display: flex; gap: 10px;">
+        <input type="text" name="search" placeholder="🔍 Rechercher par ID, nom, genre, statut..."
+            value="{{ request('search') }}"
+            style="padding: 10px 15px; width: 300px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; color: black; outline: none;">
+        
+        <button type="submit" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+            Rechercher
+        </button>
 
-    <div class="box">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <div class="data">
-            <p>Stock Faible</p>
-            <span>{{ $lowStock }}</span>
-        </div>
-    </div>
+        @if(request('search'))
+            <a href="{{ route('admin.products') }}" style="padding: 10px 20px; background-color: #e74c3c; color: white; border-radius: 8px; font-size: 16px; text-decoration: none;">
+                Réinitialiser
+            </a>
+        @endif
+    </form>
 
-</div>
+
 
     <!-- Tableau des produits -->
     <table>
@@ -60,8 +77,8 @@
                 <th>Prix</th>
                 <th>Quantité</th>
                 <th>Statut</th>
+                <th>Date création</th>
                 <th>Actions</th>
-
             </tr>
         </thead>
         <tbody>
@@ -79,19 +96,19 @@
                             <span style="color: red;">Indisponible</span>
                         @endif
                     </td>
+                    <td>{{ $product->created_at->format('d/m/Y') }}</td>
                     <td class="actions">
-                        <a href="{{ route('admin.products.edit', $product->id) }}" title="Modifier" >
-                        <i class="fas fa-edit fa-lg" style="color:#55DD5E;"></i>
+                        <a href="{{ route('admin.products.edit', $product->id) }}" title="Modifier">
+                            <i class="fas fa-edit fa-lg" style="color:#55DD5E;"></i>
                         </a>
                         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" onclick="return confirm('Supprimer ce produit ?')" style="background:none; border:none;" title="supprimer">
-                            <i class="fas fa-trash-alt fa-lg" style="color:red;"></i>
+                                <i class="fas fa-trash-alt fa-lg" style="color:red;"></i>
                             </button>
                         </form>
                     </td>
-
                 </tr>
             @empty
                 <tr>
@@ -101,9 +118,19 @@
         </tbody>
     </table>
 
-    @if ($products->hasPages())
-        {{ $products->links('vendor.pagination.custom') }}
-    @endif
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <!-- Bouton Ajouter un produit -->
+        <div style="margin: 20px 0;">
+            <a href="{{ route('admin.products.create_product') }}"
+               style="padding: 10px 20px; background-color: #27ae60; color: white; border-radius: 8px; text-decoration: none; font-size: 16px;">
+                <i class="fa-solid fa-plus"></i> Ajouter un produit 
+            </a>
+        </div>
+
+        @if ($products->hasPages())
+            {{ $products->links('vendor.pagination.custom') }}
+        @endif
+    </div>
 
 </div>
 @endsection

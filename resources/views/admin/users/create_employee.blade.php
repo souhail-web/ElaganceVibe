@@ -3,7 +3,7 @@
 @section('title', 'Créer un employé')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/create_employee.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/users/create_employee.css') }}">
 @endpush
 
 @section('content')

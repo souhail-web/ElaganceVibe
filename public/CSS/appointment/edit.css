@@ -1,0 +1,100 @@
+body {
+    background-color: #1E1F1F;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    width: 100%;
+}
+
+.title-info {
+    background-color: rgb(47, 47, 231);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    margin: 10px;
+    font-weight: 700;
+}
+
+input {
+    color: black;
+}
+
+.container {
+    max-width: 500px;
+    margin: 60px auto;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #bbb;
+}
+
+form input,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2c2c2c;
+    color: #fff;
+    font-size: 15px;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    background-color: #3a3a3a;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+form a {
+    text-decoration: none;
+    color: #e74c3c;
+    background-color: transparent;
+    border: 1px solid #e74c3c;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+form a:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+form button {
+    background-color: #27ae60;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #2ecc71;
+}
