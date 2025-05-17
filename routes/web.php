@@ -39,6 +39,13 @@ Route::middleware(['auth','admin'])->group(function (){
     Route::get('admin/services',[ServicesController::class, 'index'])->name('admin.services');
     Route::get('admin/appointment',[AppointmentController::class, 'index'])->name('admin.appointment');
 
+    // 🛠 Routes pour modifier et supprimer un service
+    Route::get('admin/services/create', [ServicesController::class, 'create'])->name('admin.services.create');
+    Route::post('admin/services', [ServicesController::class, 'store'])->name('admin.services.store');
+    Route::get('admin/services/{service}/edit', [ServicesController::class, 'edit'])->name('admin.services.edit');
+    Route::put('admin/services/{service}', [ServicesController::class, 'update'])->name('admin.services.update');
+    Route::delete('admin/services/{service}', [ServicesController::class, 'destroy'])->name('admin.services.destroy');
+
     // 🛠 Routes pour modifier et supprimer un rendez-vous
     Route::get('admin/appointments/{id}/edit', [AppointmentController::class, 'edit'])->name('admin.appointment.edit');
     Route::put('admin/appointments/{id}', [AppointmentController::class, 'update'])->name('admin.appointment.update');
@@ -48,7 +55,6 @@ Route::middleware(['auth','admin'])->group(function (){
     Route::delete('admin/orders/{order}', [OrdersController::class, 'destroy'])->name('admin.orders.destroy');
     Route::get('admin/orders/{order}/edit', [OrdersController::class, 'edit'])->name('admin.orders.edit');
     Route::put('admin/orders/{order}', [OrdersController::class, 'update'])->name('admin.orders.update');
-
 
     // 🛠 Routes pour modifier et supprimer un utilisateur
     Route::get('admin/users/{id}/edit', [UsersController::class, 'edit'])->name('admin.users.edit');
@@ -63,11 +69,7 @@ Route::middleware(['auth','admin'])->group(function (){
     Route::get('admin/products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
     Route::put('admin/products/{id}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::delete('admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
-
 });
 
 require __DIR__.'/auth.php';
 
-//khaliw had les liens hna merci👀
-//Route::get('admin/dashboard',[HomeController::class, 'index']);
-//Route::get('admin/dashboard',[HomeController::class, 'index'])->middleware(['auth','admin']);

@@ -21,8 +21,6 @@
         <i class="fa-solid fa-clipboard-list" style="font-size:20px"></i>
     </div>
 
-    
-
     <!-- Statistiques des commandes -->
     <div class="data-info">
         <div class="box">
@@ -32,6 +30,7 @@
                 <span>{{ $totalOrders }}</span>
             </div>
         </div>
+
         <div class="box">
             <i class="fa-solid fa-circle-check"></i>
             <div class="data">
@@ -39,6 +38,7 @@
                 <span>{{ $paidOrders }}</span>
             </div>
         </div>
+
         <div class="box">
             <i class="fa-solid fa-clock"></i>
             <div class="data">
@@ -47,21 +47,24 @@
             </div>
         </div>
     </div>
-    <br>
-        <!-- Formulaire de recherche -->
-    <form method="GET" action="{{ route('admin.orders') }}" style="margin-bottom: 15px; display: flex; gap: 10px;">
-        <input type="text" name="search" placeholder="🔍Rechercher par ID; nom; prénom..."
+
+    <!-- Formulaire de recherche -->
+    <form method="GET" action="{{ route('admin.orders') }}" style="margin-bottom: 5px; display: flex; gap: 10px;">
+        <input type="text" name="search" placeholder="🔍 Rechercher par ID commande, nom, statut..."
                value="{{ request('search') }}"
-               style="padding: 10px 15px; width: 300px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; color:black; outline: none;">
+               style="padding: 10px 15px; width: 300px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; color: black; outline: none;">
+        
         <button type="submit" style="padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
             Rechercher
         </button>
+
         @if(request('search'))
             <a href="{{ route('admin.orders') }}" style="padding: 10px 20px; background-color: #e74c3c; color: white; border-radius: 8px; font-size: 16px; text-decoration: none;">
                 Réinitialiser
             </a>
         @endif
     </form>
+
 
     <!-- Tableau des commandes -->
     <table>
@@ -70,7 +73,7 @@
                 <th>Id</th>
                 <th>Utilisateur</th>
                 <th>Panier</th>
-                <th>Total (€)</th>
+                <th>Total(MAD)</th>
                 <th>Statut</th>
                 <th>Date</th>
                 <th>Actions</th>
@@ -82,7 +85,7 @@
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->user->first_name ?? 'N/A' }} {{ $order->user->last_name ?? 'N/A' }}</td>
                     <td>#{{ $order->cart_id }}</td>
-                    <td>{{ $order->total_amount }} €</td>
+                    <td>{{ $order->total_amount }}</td>
                     <td>
                         @if ($order->status === 'paid')
                             <span style="color: #20E938;">Payée</span>
@@ -94,12 +97,9 @@
                     </td>
                     <td>{{ $order->created_at->format('d/m/Y') }}</td>
                     <td class="actions">
-                        <!-- Lien de modification -->
                         <a href="{{ route('admin.orders.edit', $order->id) }}" title="Modifier" >
                             <i class="fas fa-edit fa-lg" style="color:#55DD5E;"></i>
                         </a>
-
-                        <!-- Bouton de suppression -->
                         <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -117,7 +117,6 @@
         </tbody>
     </table>
 
-    <!-- Pagination -->
     @if ($orders->hasPages())
         {{ $orders->links('vendor.pagination.custom') }}
     @endif

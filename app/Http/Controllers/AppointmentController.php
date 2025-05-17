@@ -65,13 +65,13 @@ class AppointmentController extends Controller
 
         Appointment::findOrFail($id)->update($data);
 
-        return redirect()->route('admin.appointment.appointment')->with('success', 'Rendez-vous mis à jour avec succès.');
+        return redirect()->route('admin.appointment')->with('success', 'Rendez-vous mis à jour avec succès.');
     }
 
     public function destroy($id)
     {
         Appointment::findOrFail($id)->delete();
 
-        return redirect()->route('admin.appointment.appointment')->with('success', 'Rendez-vous supprimé avec succès.');
+        return redirect()->route('admin.appointment')->with('success', 'Rendez-vous supprimé avec succès.');
     }
 }

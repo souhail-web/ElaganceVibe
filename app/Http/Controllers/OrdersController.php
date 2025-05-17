@@ -14,20 +14,45 @@ class OrdersController extends Controller
 {
     $search = $request->input('search');  // Recherche par nom, prénom, email ou ID de commande
 
+    // Debug: Afficher toutes les commandes avec leur statut
+    \Log::info('Statuts des commandes dans la base de données:');
+    \Log::info(Order::pluck('status')->unique());
+    
     // Récupérer toutes les commandes avec la relation utilisateur
     $orders = Order::with('user')
         ->when($search, function ($query) use ($search) {
-            // Vérifier si le search est un ID de commande (numérique)
-            if (is_numeric($search)) {
-                $query->where('id', '=', $search);
-            } else {
-                // Recherche par nom, prénom ou email de l'utilisateur
-                $query->whereHas('user', function ($query) use ($search) {
-                    $query->where('first_name', 'like', '%' . $search . '%')
+            $query->where(function($q) use ($search) {
+                // Recherche par ID de commande
+                if (is_numeric($search)) {
+                    $q->where('id', $search);
+                }
+
+                // Normalisation de la recherche
+                $searchLower = trim(strtolower($search));
+                \Log::info('Terme recherché après normalisation: ' . $searchLower);
+
+                // Recherche par statut avec correspondance français/anglais
+                if (in_array($searchLower, ['payé', 'payée', 'paye', 'paid', 'payer', 'payés', 'payées'])) {
+                    $q->orWhere('status', 'paid');
+                } 
+                elseif (in_array($searchLower, ['en attente', 'attente', 'pending'])) {
+                    $q->orWhere('status', 'pending');
+                } 
+                elseif (in_array($searchLower, ['annulé', 'annulée', 'annule', 'annuler', 'cancelled', 'canceled', 'annulés', 'annulées'])) {
+                    $q->orWhere(function($query) {
+                        $query->where('status', 'cancelled')
+                              ->orWhere('status', 'canceled');
+                    });
+                }
+
+                // Recherche par utilisateur
+                $q->orWhereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('first_name', 'like', '%' . $search . '%')
                         ->orWhere('last_name', 'like', '%' . $search . '%')
-                        ->orWhere('email', 'like', '%' . $search . '%');
+                        ->orWhere('email', 'like', '%' . $search . '%')
+                        ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ['%' . $search . '%']);
                 });
-            }
+            });
         })
         ->latest()
         ->paginate(10);

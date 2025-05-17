@@ -74,7 +74,7 @@
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Catégorie</th>
-                <th>Prix</th>
+                <th>Prix(MAD)</th>
                 <th>Quantité</th>
                 <th>Statut</th>
                 <th>Date création</th>
@@ -87,7 +87,7 @@
                     <td>{{ $product->id }}</td>
                     <td><span>{{ $product->name }}</span></td>
                     <td>{{ $product->category === 'male' ? 'Homme' : 'Femme' }}</td>
-                    <td>{{ $product->price }} €</td>
+                    <td>{{ $product->price }}</td>
                     <td>{{ $product->quantity }}</td>
                     <td>
                         @if ($product->status === 'available')
